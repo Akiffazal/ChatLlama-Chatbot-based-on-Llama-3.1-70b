@@ -10,10 +10,10 @@ st.set_page_config(
     layout="centered"
 )
 
-working_dir = os.path.dirname(os.path.abspath(__file__))
-config_data = json.load(open(f"{working_dir}/config.json"))
-
-GROQ_API_KEY = config_data["GROQ_API_KEY"]
+headers = {
+    "Authorization": st.secrets["GROQ_API_KEY"],
+    "Content-Type": "application/json"
+}
 
 # Save the API key to environment variable
 os.environ["GROQ_API_KEY"] = GROQ_API_KEY
