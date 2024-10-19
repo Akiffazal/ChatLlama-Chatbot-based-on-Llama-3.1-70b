@@ -10,15 +10,12 @@ st.set_page_config(
     layout="centered"
 )
 
-headers = {
-    "Authorization": st.secrets["GROQ_API_KEY"],
-    "Content-Type": "application/json"
-}
 
-# Save the API key to environment variable
-os.environ["GROQ_API_KEY"] = GROQ_API_KEY
+# Get the API key from Streamlit secrets
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
-client = Groq()
+# Initialize the Groq client with the API key
+client = Groq(api_key=GROQ_API_KEY)
 
 # Initialize the chat history as Streamlit session state if not present already
 if "chat_history" not in st.session_state:
